@@ -31,8 +31,11 @@ extension Utility {
         
         // Launch
         if #available(macOS 10.13, *) {
-            guard (try? process.run()) != nil else { throw RuntimeError.operationError }
-        } else { process.launch() }
+            guard (try? process.run()) != nil
+                else { throw RuntimeError.operationError }
+        } else {
+            process.launch()
+        }
         process.waitUntilExit()
         
         let outputData = output.fileHandleForReading.readDataToEndOfFile()
